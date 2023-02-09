@@ -54,7 +54,7 @@ export default function Login() {
       setPasswordError("");
       setLoading(true);
       await logIn(formInput.email, formInput.password);
-      navigate("/");
+      navigate("/Dashboard");
     } catch {
       setError("Cannot Sign in");
     }
@@ -79,7 +79,7 @@ export default function Login() {
           //   m: 4,
         }}
       >
-        <Card sx={{ minWidth: 500, mx: "auto", mt: 10 }}>
+        <Card sx={{ minWidth: 500, mx: "auto", mt: 15 }}>
           <Box
             component="form"
             sx={{

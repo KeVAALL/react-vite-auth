@@ -81,7 +81,6 @@ export default function Signup() {
         }}
       >
         <Card sx={{ minWidth: 500, mt: 10 }}>
-          {currentUser && currentUser.email}
           <Box
             component="form"
             sx={{

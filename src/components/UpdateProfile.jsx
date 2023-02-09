@@ -144,7 +144,7 @@ export default function UpdateProfile() {
             </Button>
 
             <Typography variant="subtitle1" sx={{ margin: "auto" }}>
-              <Link to="/"> Cancel </Link>
+              <Link to="/Dashboard"> Cancel </Link>
             </Typography>
           </Box>
         </Card>

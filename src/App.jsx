@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
 import UpdateProfile from "./components/UpdateProfile";
 import Data from "./components/Data";
+import Error from "./components/Error";
 import DrawerAppBar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -42,6 +43,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

@@ -13,10 +13,10 @@ import {
 } from "@mui/material";
 
 import validator from "validator";
-import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { Link } from "react-router-dom";
 
-export default function Signup() {
+export default function Login() {
   const [formInput, setFormInput] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -29,7 +29,7 @@ export default function Signup() {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signUp, currentUser } = useAuth();
+  const { logIn } = useAuth();
 
   const handleInput = (evt) => {
     const name = evt.target.name;
@@ -45,17 +45,14 @@ export default function Signup() {
     if (!validator.isEmail(formInput.email)) {
       return setEmailError("Enter Valid Email :(");
     }
-    if (formInput.password !== formInput.confirmPassword) {
-      return setPasswordError("Passwords do not match");
-    }
 
     try {
       setEmailError("");
       setPasswordError("");
       setLoading(true);
-      await signUp(formInput.email, formInput.password);
+      await logIn(formInput.email, formInput.password);
     } catch {
-      setError("Cannot create an account");
+      setError("Cannot Sign in");
     }
 
     setLoading(false);
@@ -78,22 +75,19 @@ export default function Signup() {
         }}
       >
         <Card sx={{ minWidth: 500, mt: 10 }}>
-          {currentUser && currentUser.email}
           <Box
             component="form"
             sx={{
               m: 4,
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
-              alignContent: "center",
               gap: 4,
             }}
             onSubmit={handleSubmit}
           >
             <Box sx={{ mb: 3 }}>
               {" "}
-              <Typography variant="h3">Signup Form</Typography>
+              <Typography variant="h3">Login</Typography>
             </Box>
             {emailError && <Alert severity="error">{emailError}</Alert>}
 
@@ -116,28 +110,18 @@ export default function Signup() {
                 onChange={handleInput}
               />
             </FormControl>
-            <FormControl variant="standard">
-              <InputLabel htmlFor="confirmPassword">
-                Confirm Password
-              </InputLabel>
-              <Input
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formInput.confirmPassword}
-                onChange={handleInput}
-              />
-            </FormControl>
+
             <Button
               type="submit"
               variant="contained"
               color="primary"
-              sx={{ mt: 3 }}
               disabled={loading}
+              sx={{ mt: 3 }}
             >
-              SignUp
+              Login
             </Button>
             <Typography variant="subtitle1" sx={{ margin: "auto" }}>
-              Already have an account? <Link to="/login"> Login </Link>
+              Need an account? <Link to="/signup"> Signup </Link>
             </Typography>
           </Box>
         </Card>

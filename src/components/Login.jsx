@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import {
   Card,
@@ -96,6 +96,7 @@ export default function Login() {
             </Box>
             {emailError && <Alert severity="error">{emailError}</Alert>}
             {error && <Alert severity="error">{error}</Alert>}
+
             {passwordError && <Alert severity="warning">{passwordError}</Alert>}
             <FormControl variant="standard">
               <InputLabel htmlFor="email">Email</InputLabel>

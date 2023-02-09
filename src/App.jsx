@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import ForgotPassword from "./components/ForgotPassword";
 import UpdateProfile from "./components/UpdateProfile";
+import Data from "./components/Data";
 import DrawerAppBar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -19,6 +20,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/Data"
+            element={
+              <PrivateRoute>
+                <Data />
               </PrivateRoute>
             }
           ></Route>

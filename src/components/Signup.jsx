@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import {
   Card,
@@ -30,7 +30,7 @@ export default function Signup() {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signUp, currentUser } = useAuth();
+  const { signUp } = useAuth();
   const navigate = useNavigate();
 
   const handleInput = (evt) => {
@@ -80,7 +80,7 @@ export default function Signup() {
           //   m: 4,
         }}
       >
-        <Card sx={{ minWidth: 500, mt: 10 }}>
+        <Card sx={{ minWidth: 500, mt: 15 }}>
           <Box
             component="form"
             sx={{
@@ -98,6 +98,7 @@ export default function Signup() {
               <Typography variant="h3">Signup Form</Typography>
             </Box>
             {emailError && <Alert severity="error">{emailError}</Alert>}
+
             {error && <Alert severity="error">{error}</Alert>}
             {passwordError && <Alert severity="warning">{passwordError}</Alert>}
             <FormControl variant="standard">

@@ -8,3 +8,6 @@ https://stackoverflow.com/questions/73039496/module-not-found-error-cant-resolve
 
 # Responsive App bar with Drawer
 https://mui.com/#responsive-app-bar-with-drawer
+
+# Failed to resolve import "@mui/x-data-grid"
+https://stackoverflow.com/questions/69222920/module-not-found-cant-resolve-mui-x-data-grid-in-c-users-syndicate-docume

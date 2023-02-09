@@ -1,12 +1,19 @@
-import React, { useReducer } from "react";
-import Card from "@mui/material/Card";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import FormControl from "@mui/material/FormControl";
-import FormHelperText from "@mui/material/FormHelperText";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
-import Button from "@mui/material/Button";
+import React, { useReducer, useState } from "react";
+
+import {
+  Card,
+  Box,
+  Typography,
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
+  Alert,
+  Button,
+} from "@mui/material";
+
+import validator from "validator";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Signup() {
   const [formInput, setFormInput] = useReducer(
@@ -17,6 +24,11 @@ export default function Signup() {
       confirmPassword: "",
     }
   );
+  const [error, setError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { signUp, currentUser } = useAuth();
 
   const handleInput = (evt) => {
     const name = evt.target.name;
@@ -24,12 +36,29 @@ export default function Signup() {
     setFormInput({ [name]: newValue });
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
+    setEmailError("");
+    setPasswordError("");
 
-    let data = { formInput };
+    if (!validator.isEmail(formInput.email)) {
+      return setEmailError("Enter Valid Email :(");
+    }
+    if (formInput.password !== formInput.confirmPassword) {
+      return setPasswordError("Passwords do not match");
+    }
 
-    console.log(data);
+    try {
+      setEmailError("");
+      setPasswordError("");
+      setLoading(true);
+      await signUp(formInput.email, formInput.password);
+    } catch {
+      setError("Cannot create an account");
+    }
+
+    setLoading(false);
+
     setFormInput({
       email: "",
       password: "",
@@ -48,6 +77,7 @@ export default function Signup() {
         }}
       >
         <Card sx={{ minWidth: 500, mt: 10 }}>
+          {currentUser && currentUser.email}
           <Box
             component="form"
             sx={{
@@ -61,6 +91,9 @@ export default function Signup() {
               {" "}
               <Typography variant="h3">Signup Form</Typography>
             </Box>
+            {emailError && <Alert severity="error">{emailError}</Alert>}
+
+            {passwordError && <Alert severity="warning">{passwordError}</Alert>}
             <FormControl variant="standard">
               <InputLabel htmlFor="email">Email</InputLabel>
               <Input
@@ -95,6 +128,7 @@ export default function Signup() {
               variant="contained"
               color="primary"
               sx={{ mt: 3 }}
+              disabled={loading}
               onSubmit={handleSubmit}
             >
               SignUp

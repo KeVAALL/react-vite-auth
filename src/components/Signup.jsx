@@ -15,6 +15,7 @@ import {
 import validator from "validator";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [formInput, setFormInput] = useReducer(
@@ -30,6 +31,7 @@ export default function Signup() {
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
   const { signUp, currentUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleInput = (evt) => {
     const name = evt.target.name;
@@ -54,6 +56,7 @@ export default function Signup() {
       setPasswordError("");
       setLoading(true);
       await signUp(formInput.email, formInput.password);
+      navigate("/login");
     } catch {
       setError("Cannot create an account");
     }
@@ -96,7 +99,7 @@ export default function Signup() {
               <Typography variant="h3">Signup Form</Typography>
             </Box>
             {emailError && <Alert severity="error">{emailError}</Alert>}
-
+            {error && <Alert severity="error">{error}</Alert>}
             {passwordError && <Alert severity="warning">{passwordError}</Alert>}
             <FormControl variant="standard">
               <InputLabel htmlFor="email">Email</InputLabel>

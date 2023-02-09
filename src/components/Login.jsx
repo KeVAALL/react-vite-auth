@@ -15,6 +15,7 @@ import {
 import validator from "validator";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [formInput, setFormInput] = useReducer(
@@ -30,6 +31,7 @@ export default function Login() {
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
   const { logIn } = useAuth();
+  const navigate = useNavigate();
 
   const handleInput = (evt) => {
     const name = evt.target.name;
@@ -47,10 +49,12 @@ export default function Login() {
     }
 
     try {
+      setError("");
       setEmailError("");
       setPasswordError("");
       setLoading(true);
       await logIn(formInput.email, formInput.password);
+      navigate("/");
     } catch {
       setError("Cannot Sign in");
     }
@@ -90,7 +94,7 @@ export default function Login() {
               <Typography variant="h3">Login</Typography>
             </Box>
             {emailError && <Alert severity="error">{emailError}</Alert>}
-
+            {error && <Alert severity="error">{error}</Alert>}
             {passwordError && <Alert severity="warning">{passwordError}</Alert>}
             <FormControl variant="standard">
               <InputLabel htmlFor="email">Email</InputLabel>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AuthProvider from "./contexts/AuthContext";
 import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
@@ -16,6 +16,7 @@ function App() {
       <AuthProvider>
         <DrawerAppBar />
         <Routes>
+          <Route path="/" element={<Navigate to="/SignUp" />} />
           <Route
             path="/Dashboard"
             element={

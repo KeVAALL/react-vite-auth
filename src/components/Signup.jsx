@@ -10,12 +10,15 @@ import {
   InputLabel,
   Alert,
   Button,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 
 import validator from "validator";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function Signup() {
   const [formInput, setFormInput] = useReducer(
@@ -30,8 +33,17 @@ export default function Signup() {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setPasswordValue] = useState(false);
   const { signUp } = useAuth();
   const navigate = useNavigate();
+
+  const handleClickShowPassword = () => {
+    setPasswordValue(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const handleInput = (evt) => {
     const name = evt.target.name;
@@ -115,8 +127,19 @@ export default function Signup() {
               <Input
                 id="password"
                 name="password"
+                type={showPassword ? "text" : "password"}
                 value={formInput.password}
                 onChange={handleInput}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
             </FormControl>
             <FormControl variant="standard">
@@ -126,8 +149,19 @@ export default function Signup() {
               <Input
                 id="confirmPassword"
                 name="confirmPassword"
+                type={showPassword ? "text" : "password"}
                 value={formInput.confirmPassword}
                 onChange={handleInput}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
             </FormControl>
             <Button

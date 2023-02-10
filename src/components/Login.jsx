@@ -30,7 +30,7 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { logIn } = useAuth();
+  const { logIn, setLogin } = useAuth();
   const navigate = useNavigate();
 
   const handleInput = (evt) => {
@@ -54,6 +54,7 @@ export default function Login() {
       setPasswordError("");
       setLoading(true);
       await logIn(formInput.email, formInput.password);
+      setLogin(true);
       navigate("/Dashboard");
     } catch {
       setError("Cannot Sign in");

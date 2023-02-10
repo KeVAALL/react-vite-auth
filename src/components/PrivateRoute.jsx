@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function PrivateRoute({ children }) {
-  const { currentUser } = useAuth();
+  const { currentUser, loggedIn } = useAuth();
 
-  return currentUser ? children : <Navigate to="/error" />;
+  return currentUser && loggedIn ? children : <Navigate to="/error" />;
 }

@@ -15,13 +15,22 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const drawerWidth = 240;
-const navItems = ["SignUp", "Login", "Dashboard", "Data"];
+// const navItems = ["SignUp", "Login", "Dashboard", "Data"];
 
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { currentUser, loggedIn } = useAuth();
+
+  let navItems;
+  if (!loggedIn) {
+    navItems = ["SignUp", "Login"];
+  } else {
+    navItems = ["SignUp", "Login", "Dashboard", "Data"];
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);

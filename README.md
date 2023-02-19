@@ -15,3 +15,6 @@ https://stackoverflow.com/questions/69222920/module-not-found-cant-resolve-mui-x
 
 # How to set the DefaultRoute to another Route in React Router
 https://stackoverflow.com/questions/29552601/how-to-set-the-defaultroute-to-another-route-in-react-router
+
+# Responsive styling properties
+https://youtu.be/ZowbtOWOElY

@@ -32,7 +32,18 @@ export default function Dashboard() {
         }}
       >
         {" "}
-        <Card sx={{ minWidth: 500, mt: 15 }}>
+        <Card
+          sx={{
+            width: {
+              xs: 400,
+              sm: 500,
+              md: 600,
+              lg: 700,
+              xl: 800,
+            },
+            mt: 15,
+          }}
+        >
           <Box
             sx={{
               margin: "auto",

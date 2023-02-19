@@ -1,35 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, Card } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { Box, Card, ImageList, ImageListItem } from "@mui/material";
 
 export default function Data() {
-  const [posts, setPosts] = useState([]);
+  const [images, setImages] = useState([]);
 
-  const columns = [
-    { field: "userId", headerName: "ID", type: "number", width: 90 },
-    {
-      field: "id",
-      headerName: "id",
-      type: "number",
-      width: 70,
-      editable: true,
-    },
-    {
-      field: "title",
-      headerName: "title",
-      width: 350,
-      editable: true,
-    },
-    {
-      field: "body",
-      headerName: "body",
-      type: "string",
-      width: 350,
-      editable: true,
-    },
-  ];
-
-  const url = "https://jsonplaceholder.typicode.com/posts";
+  const url = "https://api.thecatapi.com/v1/images/search?format=json&limit=10";
 
   useEffect(() => {
     fetch(url)
@@ -39,7 +14,7 @@ export default function Data() {
         }
         return res.json();
       })
-      .then((data) => setPosts(data));
+      .then((data) => setImages(data));
   }, []);
 
   return (
@@ -51,17 +26,33 @@ export default function Data() {
         //   m: 4,
       }}
     >
-      <Card sx={{ minWidth: 1000, mt: 15 }}>
-        <Box sx={{ height: 400, width: "100%" }}>
-          <DataGrid
-            rows={posts}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            disableSelectionOnClick
-            experimentalFeatures={{ newEditingApi: true }}
-          />
-        </Box>
+      {" "}
+      <Card
+        sx={{
+          width: {
+            xs: "auto",
+          },
+          mt: 15,
+          p: 3,
+        }}
+      >
+        <ImageList
+          sx={{ width: 500, height: 450 }}
+          variant="woven"
+          cols={3}
+          gap={8}
+        >
+          {images.map((item) => (
+            <ImageListItem key={item.img}>
+              <img
+                src={`${item.url}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`${item.url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.id}
+                loading="lazy"
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
       </Card>
     </Box>
   );

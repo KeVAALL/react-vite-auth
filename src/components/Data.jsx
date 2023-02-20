@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Card, ImageList, ImageListItem } from "@mui/material";
+import UtilityBox from "../UI/Box";
 
 export default function Data() {
   const [images, setImages] = useState([]);
@@ -18,14 +19,7 @@ export default function Data() {
   }, []);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignContent: "center",
-        justifyContent: "center",
-        //   m: 4,
-      }}
-    >
+    <UtilityBox>
       {" "}
       <Card
         sx={{
@@ -54,6 +48,6 @@ export default function Data() {
           ))}
         </ImageList>
       </Card>
-    </Box>
+    </UtilityBox>
   );
 }

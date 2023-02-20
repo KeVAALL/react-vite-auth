@@ -3,6 +3,8 @@ import { Alert, Box, Button, Card, Typography } from "@mui/material";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import UtilityCard from "../UI/Card";
+import UtilityBox from "../UI/Box";
 
 export default function Dashboard() {
   const { currentUser, logOut, setLogin } = useAuth();
@@ -23,27 +25,9 @@ export default function Dashboard() {
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          alignContent: "center",
-          justifyContent: "center",
-          //   m: 4,
-        }}
-      >
+      <UtilityBox>
         {" "}
-        <Card
-          sx={{
-            width: {
-              xs: 400,
-              sm: 500,
-              md: 600,
-              lg: 700,
-              xl: 800,
-            },
-            mt: 15,
-          }}
-        >
+        <UtilityCard>
           <Box
             sx={{
               margin: "auto",
@@ -81,8 +65,8 @@ export default function Dashboard() {
             </Button>
             {error && <Alert severity="error">{error}</Alert>}
           </Box>
-        </Card>
-      </Box>
+        </UtilityCard>
+      </UtilityBox>
     </>
   );
 }

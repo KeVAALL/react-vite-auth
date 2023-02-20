@@ -19,6 +19,8 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import UtilityCard from "../UI/Card";
+import UtilityBox from "../UI/Box";
 
 export default function Login() {
   const [formInput, setFormInput] = useReducer(
@@ -83,28 +85,8 @@ export default function Login() {
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          justifyContent: "center",
-          //   m: 4,
-        }}
-      >
-        <Card
-          sx={{
-            width: {
-              xs: 400,
-              sm: 500,
-              md: 600,
-              lg: 700,
-              xl: 800,
-            },
-            mx: "auto",
-            mt: 15,
-          }}
-        >
+      <UtilityBox>
+        <UtilityCard>
           <Box
             component="form"
             sx={{
@@ -175,13 +157,13 @@ export default function Login() {
               </Typography>
             </Box>
           </Box>
-        </Card>
+        </UtilityCard>
         <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
           <Typography variant="subtitle1" sx={{ margin: "auto" }}>
             Need an account? <Link to="/SignUp"> Signup </Link>
           </Typography>
         </Box>
-      </Box>
+      </UtilityBox>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useReducer, useState } from "react";
 
 import {
   Card,
@@ -19,6 +19,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import UtilityCard from "../UI/Card";
+import UtilityBox from "../UI/Box";
 
 export default function Signup() {
   const [formInput, setFormInput] = useReducer(
@@ -84,26 +86,8 @@ export default function Signup() {
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          alignContent: "center",
-          justifyContent: "center",
-          //   m: 4,
-        }}
-      >
-        <Card
-          sx={{
-            width: {
-              xs: 400,
-              sm: 500,
-              md: 600,
-              lg: 700,
-              xl: 800,
-            },
-            mt: 15,
-          }}
-        >
+      <UtilityBox>
+        <UtilityCard>
           <Box
             component="form"
             sx={{
@@ -188,8 +172,8 @@ export default function Signup() {
               Already have an account? <Link to="/login"> Login </Link>
             </Typography>
           </Box>
-        </Card>
-      </Box>
+        </UtilityCard>
+      </UtilityBox>
     </>
   );
 }

@@ -15,6 +15,8 @@ import {
 import validator from "validator";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
+import UtilityCard from "../UI/Card";
+import UtilityBox from "../UI/Box";
 
 export default function ForgotPassword() {
   const [formInput, setFormInput] = useReducer(
@@ -64,16 +66,8 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignContent: "center",
-          justifyContent: "center",
-          //   m: 4,
-        }}
-      >
-        <Card sx={{ minWidth: 500, mx: "auto", mt: 10 }}>
+      <UtilityBox>
+        <UtilityCard>
           <Box
             component="form"
             sx={{
@@ -123,13 +117,13 @@ export default function ForgotPassword() {
               </Typography>
             </Box>
           </Box>
-        </Card>
+        </UtilityCard>
         <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
           <Typography variant="subtitle1" sx={{ margin: "auto" }}>
             Need an account? <Link to="/signup"> Signup </Link>
           </Typography>
         </Box>
-      </Box>
+      </UtilityBox>
     </>
   );
 }

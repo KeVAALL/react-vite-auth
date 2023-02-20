@@ -19,6 +19,8 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import UtilityCard from "../UI/Card";
+import UtilityBox from "../UI/Box";
 
 export default function UpdateProfile() {
   const [formInput, setFormInput] = useReducer(
@@ -88,15 +90,8 @@ export default function UpdateProfile() {
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          alignContent: "center",
-          justifyContent: "center",
-          //   m: 4,
-        }}
-      >
-        <Card sx={{ minWidth: 500, mt: 10 }}>
+      <UtilityBox>
+        <UtilityCard>
           <Box
             component="form"
             sx={{
@@ -181,8 +176,8 @@ export default function UpdateProfile() {
               <Link to="/Dashboard"> Cancel </Link>
             </Typography>
           </Box>
-        </Card>
-      </Box>
+        </UtilityCard>
+      </UtilityBox>
     </>
   );
 }
